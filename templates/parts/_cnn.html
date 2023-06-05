@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CNN_Model{% endblock title %}</title>
+    {% include "parts/_styles.html" %}
+    {% endblock head %}
+</head>
+
+<body>
+    {% block body %}
+    {% include "parts/_navbar.html" %}
+    <section class="breadcrumb-section set-bg" style="background-image: url({{ url_for('static', filename='img/breadcrumb.jpg') }})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>About the model</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/">Home</a>
+                            <span>About the model</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="chart1" class="chart1"></div>
+    <div id="chart2" class="chart2"></div>
+    <div id="chart3" class="chart3"></div>
+    {% block footer %}
+    {% include "parts/footer.html" %}
+    {% endblock footer %}
+    {% endblock body %}
+</body>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type='text/javascript'>
+    var graphs = {{ graphJSON | safe }};
+    Plotly.plot('chart1', graphs[0], {});
+    Plotly.plot('chart2',graphs[1],{});
+    Plotly.plot('chart3',graphs[2],{})
+</script>
+
+</html>

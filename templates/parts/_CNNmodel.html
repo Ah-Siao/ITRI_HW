@@ -1,0 +1,37 @@
+{% extends "parts/base.html"%}
+{% block title %}CNN_Model{% endblock title %}
+{% block head %}
+{{ super() }}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/plotly-2.20.0.min.js') }}" charset="utf-8"></script>
+<script type='text/javascript'>
+    var graphs = {{ graphJSON | safe }};
+    Plotly.plot('chart', graphs, {});
+</script>
+{% endblock scripts %}
+{% endblock head %}
+
+{% block body %}
+{% include "parts/_navbar.html" %}
+{% block page_content %}
+<section class="breadcrumb-section set-bg" style="background-image: url({{ url_for('static', filename='img/breadcrumb.jpg') }})">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>About the model</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/">Home</a>
+                        <span>About the model</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="chart" class="chart"></div>
+
+{% endblock page_content %}
+{% endblock body %}
+
+

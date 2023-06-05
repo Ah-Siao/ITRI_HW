@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Group2_demo</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    {%block styles%}
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    {%endblock styles%}
+
+    <!-- Css Styles -->
+
+</head>
+{%block body%}
+<body>
+    <!-- Page Preloder -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                <li>Let's save the world by reducing using of manufactured food!</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            {% if not loggedIn %}
+                            <div class="header__top__right__auth">
+                                <a href="/login"><i class="fa fa-user"></i> Login</a>
+                            </div>
+                            {% else %}
+                            <div class="header__top__right__auth">
+                                <a href="#"><i class="fa fa-user"></i>Hello,{{ firstName }}</a>
+                                <div class="dropdown-content">
+                                    <hr>
+                                    <a href="/logout">Sign Out</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt=""></a>
+                    </div>
+          
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active"><a href="/">Home</a></li>
+                            <li><a href="/living">Shop</a></li>
+                            <li><a href="#">Pages</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a href="/living">Shop Details</a></li>
+                                    <li><a href="/carts">Shoping Cart</a></li>
+                                    <li><a href="/checkout">Check Out</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="./CNN">THE MODEL</a></li>
+                        </ul>
+                    </nav>
+                    <div class='slogan'>
+                        <h2>We help our users calculate the amount of CO2 they create daily!</h2>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="header__cart">
+                        <ul>
+                            <li><a href="/carts"><i class="fa fa-shopping-bag"></i> <span>{{noOfItems}}</span></a></li>
+                        </ul>
+                        <div class="header__cart__price">CO2: <span>{{ totalCO2 }}</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                            <span>All departments</span>
+                        </div>
+                        <ul>
+                            <li><a href="/living">日用生活</a></li>
+                            <li><a href="/dessert">點心/零食</a></li>
+                            <li><a href="/staple">民生食材</a></li>
+                            <li><a href="/drinks">飲品/酒品</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action="/searchbar", method='POST'>
+                                <div class="hero__search__categories">
+                                    All Categories
+                                    <span class="arrow_carrot-down"></span>
+                                </div>
+                                <input type="text" placeholder="What do yo u need?" name='searchbar'>
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="hero__item set-bg" data-setbg="{{ url_for('static', filename='img/tree_banner2.jpg') }}">
+                        <div class="hero__text">
+                            <span>Image Recognition</span>
+                            <h2>Upload<br />Image</h2>
+                            <form method='POST' action='/' enctype='multipart/form-data'>
+                                <input class="form-control form-control-lg" id="formFileLg" type="file" name="file" >
+                                <button type='submit' class='primary-btn'>Upload Image</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Categories Section Begin -->
+    <section class="categories">
+        <div class="container">
+            <div class="row">
+                <div class="categories__slider owl-carousel">
+                    {% for row in data %}
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="{{ url_for('static', filename='img/product/'+row[3]) }}">
+                            <ul class="product__item__pic__hover">
+                                <li><a href="/addToCart?productId={{row[0]}}"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                            <h6><a href="/addToCart?productId={{row[0]}}">CO2: {{ row[2] }} g</a></h6>
+                            <a href="/addToCart?productId={{row[0]}}"><i class="fa fa-shopping-cart"></i></a>
+                            
+ 
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Section End -->
+
+    <!-- Banner Begin -->
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="img/banner/banner-1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="img/banner/banner-2.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Reference: 環保署</li>
+                            <li>Sponsor: 勞工局</li>
+                            <li>Course: AI大數據班</li>
+                            <li>Authors: Group 2</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Group Members</h6>
+                        <ul>
+                            <li><a href="#">翔文</a></li>
+                            <li><a href="#">Lia</a></li>
+                            <li><a href="#">sunny</a></li>
+                            <li><a href="#">巫芷芸</a></li>
+                            <li><a href="#">宗新</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.slicknav.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mixitup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+
+</body>
+{%endblock body%}
+
+</html>

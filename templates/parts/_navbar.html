@@ -1,0 +1,113 @@
+
+    <header class="header">
+      <div class="header__top">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                      <div class="header__top__left">
+                          <ul>
+                              <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                              <li>Let's save the world by reducing using of manufactured food!</li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                      <div class="header__top__right">
+                          <div class="header__top__right__social">
+                              <a href="#"><i class="fa fa-facebook"></i></a>
+                              <a href="#"><i class="fa fa-twitter"></i></a>
+                              <a href="#"><i class="fa fa-linkedin"></i></a>
+                              <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                          </div>
+                          {% if not loggedIn %}
+                          <div class="header__top__right__auth">
+                              <a href="/login"><i class="fa fa-user"></i> Login</a>
+                          </div>
+                          {% else %}
+                          <div class="header__top__right__auth">
+                              <a href="#"><i class="fa fa-user"></i>Hello,{{ firstName }}</a>
+                              <div class="dropdown-content">
+                                <hr>
+                                <a href="/logout">Sign Out</a>
+                            </div>
+                          </div>
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-3">
+                  <div class="header__logo">
+                      <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt=""></a>
+                  </div>
+              </div>
+              <div class="col-lg-6">
+                  <nav class="header__menu">
+                      <ul>
+                          <li class="active"><a href="/">Home</a></li>
+                          <li><a href="/living">Shop</a></li>
+                          <li><a href="#">Pages</a>
+                              <ul class="header__menu__dropdown">
+                                  <li><a href="/living">Shop Details</a></li>
+                                  <li><a href="/carts">Shoping Cart</a></li>
+                                  <li><a href="/checkout">Check Out</a></li>
+                              </ul>
+                          </li>
+                          <li><a href="/about">Blog</a></li>
+                          <li><a href="/CNN">THE MODEL</a></li>
+                      </ul>
+                  </nav>
+              </div>
+              <div class="col-lg-3">
+                  <div class="header__cart">
+                      <ul>
+                          <li><a href="/carts"><i class="fa fa-shopping-bag"></i> <span>{{noOfItems}}</span></a></li>
+                      </ul>
+                      <div class="header__cart__price">CO2:<span>{{ totalCO2 }}</span></div>
+                  </div>
+              </div>
+          </div>
+          <div class="humberger__open">
+              <i class="fa fa-bars"></i>
+          </div>
+      </div>
+  </header>
+
+  <section class="hero hero-normal">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="hero__categories">
+                    <div class="hero__categories__all">
+                        <i class="fa fa-bars"></i>
+                        <span>All departments</span>
+                    </div>
+                    <ul>
+                        <li><a href="/living">日用生活</a></li>
+                        <li><a href="/dessert">點心/零食</a></li>
+                        <li><a href="/staple">民生食材</a></li>
+                        <li><a href="/drinks">飲品/酒品</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="hero__search">
+                    <div class="hero__search__form">
+                        <form action="/searchbar", method='POST'>
+                            <div class="hero__search__categories">
+                                All Categories
+                                <span class="arrow_carrot-down"></span>
+                            </div>
+                            <input type="text" placeholder="What do yo u need?" name='searchbar'>
+                            <button type="submit" class="site-btn">SEARCH</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->

@@ -1,0 +1,31 @@
+{% extends "parts/base.html"%}
+{% block title %}Predicted Result{% endblock title %}
+
+{% block page_content %}
+{{ super() }}
+
+
+<!-- practice start -->
+<style>
+    .container-image{
+        background-image:url({{ url_for('static', filename='img/trees/tree2.png') }});
+        background-size:cover;
+        background-clip: content-box;
+        background-position: 50% calc(50% - 10%);
+    }
+</style>
+<div class="container container-image">
+    <img src="{{ src }}" class="rounded mx-auto d-block" alt="...">
+    <ul class="product__item__pic__hover2">
+        <li><a href="/addToCart?productId={{productId}}"><i class="fa fa-shopping-cart fa-2x"></i></a></li>
+    </ul>
+</div>
+<div class="reg_text">
+    <h2>{{predict}}</h2>
+    <h2>CO2: {{ carbonM }} g</h2>
+</div>
+
+
+<!-- practice end -->
+
+{% endblock page_content %}

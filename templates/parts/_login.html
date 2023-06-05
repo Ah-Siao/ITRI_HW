@@ -1,0 +1,30 @@
+    <section class="breadcrumb-section set-bg" style="background-image: url({{ url_for('static', filename='img/breadcrumb.jpg') }})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Log In</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/">Home</a>
+                            <span>Log In</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+    <div class="enter-form">
+        <h3> {{error}} </h3><br>
+        <form action="/login" method="POST">
+	        <h3>Email: <input type="text" name="email"></h3><br>
+	        <h3>Password: <input type="password" name="password"></h3><br>
+            <h3><input type="submit"></h3><br>
+	    <a href="/regform">Register here</a>
+        </form>
+    </div>
+</section>
+

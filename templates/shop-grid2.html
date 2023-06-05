@@ -1,0 +1,12 @@
+{% extends "parts/base.html"%}
+{% block title %}Product detail{% endblock title %}
+{% block head %}
+{{ super() }}
+{% endblock head %}
+
+{% block body%}
+{% include "parts/_navbar.html" %}
+{% block page_content %}
+{% include pagelink %}
+{% endblock page_content %}
+{% endblock body %}
