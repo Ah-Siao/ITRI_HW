@@ -1,0 +1,3 @@
+This is a group project in ITRI AI and big data training course. The app helps customers calculate the total CO2 consumed daily through a shopping webpage. Customers can log into the account and start the CO2 shopping. When you checkout, the webpage will tell you how many trees you have to plant to eliminate the CO2 you produce.  
+The CO2 database is from https://ghgregistry.epa.gov.tw/epa_ghg/. 
+The webpage template is downloaded and modified from https://themewagon.com/themes/free-bootstrap-4-html5-responsive-ecommerce-website-template-ogani/. Due to the limited training data (1 picture/class. Augment to 16 images by simply shifting the images), the CNN model is overfitted.  
